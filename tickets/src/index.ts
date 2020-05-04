@@ -14,7 +14,7 @@ const start = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log("🤷‍♀️🤷‍♀️🤷‍♀️ Connected to MongoDB");
+    console.log("🤷‍🎶🎶 Connected to MongoDB");
   } catch (error) {
     console.error(error);
   }
