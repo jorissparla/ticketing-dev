@@ -3,8 +3,7 @@ import axios from "axios";
 import buildClient from "../api/build-client";
 import Link from "next/link";
 
-const Index = (props) => {
-  let currentUser = props.currentUser || null;
+const Index = ({ currentUser = null }) => {
   return (
     <div>
       {!currentUser ? (
@@ -28,40 +27,26 @@ const Index = (props) => {
   );
 };
 
-export async function getServerSideProps(context) {
+// export async function getServerSideProps(context) {
+//   // @ts-ignore
+//   console.log("Landing Page");
+//   const client = buildClient(context);
+//   const { data } = await client.get("/api/users/currentuser");
+//   return {
+//     props: {
+//       currentUser: data.currentUser || null,
+//     },
+//   };
+// }
+
+Index.getInitialProps = async (context) => {
   // @ts-ignore
+  console.log("Landing Page");
   const client = buildClient(context);
   const { data } = await client.get("/api/users/currentuser");
   return {
-    props: {
-      currentUser: data.currentUser || null,
-    },
+    ...data,
   };
-}
-
-// Index.getInitialProps = async (context) => {
-//   if (typeof window === "undefined") {
-//     const { data } = await axios.get("http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser", {
-//       headers: {
-//         Host: "ticketing.dev",
-//       },
-//     });
-//     console.log("Server", data);
-//     return {
-//       props: {
-//         currentUser: null,
-//       },
-//     };
-//   } else {
-//     console.log("client");
-//     const response = await axios.get("/api/users/currentuser");
-//     console.log(response.data);
-//     return {
-//       props: {
-//         ...response.data,
-//       }, // will be passed to the page component as props
-//     };
-//   }
-// };
+};
 
 export default Index;
