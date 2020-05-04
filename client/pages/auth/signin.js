@@ -6,7 +6,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/signin",
     method: "post",
     body: { email, password },
     onSuccess: () => Router.push("/"),
@@ -20,7 +20,7 @@ const SignUp = () => {
       <div className="pt-10 h-screen ">
         <div className="w-96 mx-auto rounded shadow-lg pb-5 px-8 flex items-center flex-col justify-center bg-white">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold">Signup Form</h1>
+            <h1 className="text-3xl font-bold">Signin Form</h1>
             <div>
               <label className="block">
                 <span className="text-gray-700">Email</span>
@@ -33,7 +33,7 @@ const SignUp = () => {
             </div>
             {errors}
             <button className="mt-8 rounded px-4  py-3  font-bold   leading-tight shadow-md bg-teal-300 hover:bg-teal-400 text-teal-800">
-              Sign Up
+              Sign In
             </button>
           </form>
         </div>
